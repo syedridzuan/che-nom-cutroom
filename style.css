@@ -20,3 +20,10 @@ dialog{padding:0;width:min(440px,calc(100vw - 32px));border:1px solid var(--line
 @media(max-width:800px){.workspace{grid-template-columns:1fr}.mast{align-items:flex-start;flex-direction:column;gap:16px}.screen{aspect-ratio:16/9}.notes #notes{max-height:290px}.nav{height:58px}.timeline{margin-top:14px}.mast{margin:21px 0}.panelhead{min-height:46px}}
 @media(max-width:420px){.wrap{padding-inline:12px}.transport{gap:6px;padding-inline:8px}.quiet{padding-inline:0}.quiet span{display:none}.ruler{font-size:11px}.brand{font-size:21px}.status{font-size:12px}}
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+
+@media(max-width:800px){
+  main.wrap{display:flex;flex-direction:column}
+  .workspace{display:contents}
+  .monitor{order:1}.timeline{order:2}.notes{order:3;margin-top:14px}
+  .status{order:4}#message{order:5}
+}
