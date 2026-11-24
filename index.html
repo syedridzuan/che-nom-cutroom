@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="ms">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f5f0"><title>Cutroom · Che Nom</title>
+<link rel="icon" href="data:,"><link rel="stylesheet" href="style.css"><script defer src="app.js"></script>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand"><span class="brandmark" aria-hidden="true">✳</span> Che Nom <span class="divider"></span><span class="product">Cutroom</span></div><button id="keys" class="quiet"><i data-icon="keyboard"></i><span>Pintasan</span></button></div></header>
+<main class="wrap">
+<section class="mast"><div><h1>Bilik suntingan<span>.</span></h1><p>Semak video, tanda masa dan tulis arahan edit.</p></div><div class="actions"><button id="open"><i data-icon="folder"></i>Buka video</button><button id="export" class="primary"><i data-icon="download"></i>Eksport JSON</button></div><input id="file" type="file" accept="video/*,.mov,.mkv,.m4v" hidden></section>
+<div class="workspace">
+<section class="panel monitor" aria-labelledby="monitor-title"><div class="panelhead"><h2 id="monitor-title"><i data-icon="monitor"></i>Monitor video</h2><span id="dimensions" class="meta"></span></div>
+<div class="screen" id="screen"><video id="video" poster="assets/sambal.jpg" playsinline preload="auto" aria-label="Pratonton video"></video><span class="demo" id="demo">Klip demo</span></div>
+<div class="transport"><button id="play" class="play" aria-label="Main video"><i data-icon="play"></i></button><output id="clock">00:00.000</output><span class="duration">/ <span id="duration">00:15.000</span></span><div class="spacer"></div><button id="speed" class="iconbtn speed" aria-label="Tukar kelajuan main balik">1×</button><button id="mute" class="iconbtn" aria-label="Senyapkan audio"><i data-icon="volume"></i></button><button id="full" class="iconbtn" aria-label="Skrin penuh"><i data-icon="expand"></i></button></div></section>
+<section class="panel notes"><div class="panelhead"><h2><i data-icon="notes"></i>Arahan edit</h2><span class="count" id="count">0</span></div><div id="notes"></div><div class="addwrap"><button id="add" class="add"><i data-icon="plus"></i>Tambah arahan <kbd>M</kbd></button></div></section>
+</div>
+<section class="panel timeline"><div class="panelhead"><h2><i data-icon="timeline"></i>Garis masa</h2><span id="filename" class="meta filename">sambal-demo.mp4</span></div>
+<div class="timelinebody"><div class="ruler" id="ruler" aria-hidden="true"></div><div class="tracks"><div id="ticks"></div><div id="film"></div><div id="marks"></div><div id="needle"></div><input id="seek" type="range" min="0" max="15" value="0" step="0.001" aria-label="Geser garis masa"></div></div>
+</section>
+<div class="status"><i data-icon="drive"></i><span id="saveState">Video kekal pada peranti ini.</span></div><p id="message" role="status"></p>
+</main>
+<dialog id="editor"><form id="form"><div class="modalhead"><h2 id="formTitle">Tambah arahan</h2><button type="button" class="iconbtn" data-close aria-label="Tutup">×</button></div>
+<div class="formbody"><label>Jenis edit<select id="type"><option value="cut">Potong</option><option value="caption">Kapsyen</option><option value="camera">Kamera</option><option value="note">Nota</option></select></label><div class="times"><label>Mula (saat)<input id="start" type="number" step="0.001" min="0" required></label><label>Akhir (pilihan)<input id="end" type="number" step="0.001" min="0" placeholder="Saat"></label></div><label>Arahan<textarea id="instruction" required rows="3" placeholder="Apa yang perlu diedit?"></textarea></label><p id="formError" role="alert"></p></div>
+<div class="modalfoot"><button type="button" id="remove" class="danger">Padam</button><div class="spacer"></div><button type="button" data-close>Batal</button><button class="primary" type="submit">Simpan</button></div></form></dialog>
+<dialog id="shortcuts"><div class="modalhead"><h2>Pintasan papan kekunci</h2><button class="iconbtn" data-close aria-label="Tutup">×</button></div><dl><dt>Main / jeda</dt><dd><kbd>Space</kbd></dd><dt>Undur / maju 1 saat</dt><dd><kbd>←</kbd> <kbd>→</kbd></dd><dt>Tambah arahan pada masa ini</dt><dd><kbd>M</kbd></dd><dt>Tanda mula julat</dt><dd><kbd>I</kbd></dd><dt>Tamatkan julat dan tulis arahan</dt><dd><kbd>O</kbd></dd></dl></dialog>
+</body></html>
