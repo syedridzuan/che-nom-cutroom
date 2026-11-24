@@ -1,6 +1,6 @@
 # Che Nom Cutroom
 
-[Open Cutroom](https://syedridzuan.github.io/che-nom-cutroom/)
+[Open Cutroom](https://cutroom.chenom.my/)
 
 A small Malay-language video review tool built with HTML, CSS and JavaScript. Open a clip, scrub the timeline, and export editing instructions for Claude Code or Codex. Video playback, thumbnails and edit notes stay in the browser.
 
