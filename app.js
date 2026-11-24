@@ -179,13 +179,26 @@ video.onvolumechange=()=>{
   byId('mute').innerHTML=icon(video.muted?'muted':'volume');
   byId('mute').setAttribute('aria-label',video.muted?'Hidupkan audio':'Senyapkan audio');
 };
-byId('full').onclick=async()=>{
+const monitor = document.querySelector('.monitor');
+function updateFullscreen() {
+  const expanded = document.fullscreenElement === monitor || monitor.classList.contains('expanded');
+  byId('full').setAttribute('aria-label', expanded ? 'Keluar skrin penuh' : 'Skrin penuh');
+  byId('full').setAttribute('aria-pressed', String(expanded));
+}
+function setExpanded(value) {
+  monitor.classList.toggle('expanded', value);
+  document.body.classList.toggle('player-expanded', value);
+  updateFullscreen();
+}
+document.addEventListener('fullscreenchange', updateFullscreen);
+byId('full').onclick = async () => {
+  if (monitor.classList.contains('expanded')) return setExpanded(false);
+  if (document.fullscreenElement) return document.exitFullscreen();
   try {
-    if (document.fullscreenElement) await document.exitFullscreen();
-    else if (byId('screen').requestFullscreen) await byId('screen').requestFullscreen();
-    else if (video.webkitEnterFullscreen) video.webkitEnterFullscreen();
-    else message('Skrin penuh tidak tersedia dalam pelayar ini.');
-  } catch { message('Skrin penuh tidak tersedia dalam pelayar ini.'); }
+    await monitor.requestFullscreen();
+  } catch {
+    setExpanded(true);
+  }
 };
 byId('open').onclick=()=>byId('file').click();
 byId('file').onchange=async e=>{
@@ -238,6 +251,7 @@ document.addEventListener('keydown',e=>{
   if (e.altKey||e.ctrlKey||e.metaKey||document.querySelector('dialog[open]')||!ready()) return;
   if (e.target.closest('button,input,textarea,select') && (e.key===' ' || e.target.id!=='seek' && e.target.tagName!=='BUTTON')) return;
   switch(e.key.toLowerCase()) {
+    case 'escape': setExpanded(false); break;
     case ' ': togglePlay(); break;
     case 'arrowright': seek(video.currentTime+1); break;
     case 'arrowleft': seek(video.currentTime-1); break;

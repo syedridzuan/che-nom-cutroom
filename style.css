@@ -27,3 +27,9 @@ dialog{padding:0;width:min(440px,calc(100vw - 32px));border:1px solid var(--line
   .monitor{order:1}.timeline{order:2}.notes{order:3;margin-top:14px}
   .status{order:4}#message{order:5}
 }
+
+body.player-expanded{overflow:hidden}
+.monitor.expanded,.monitor:fullscreen{display:flex;flex-direction:column;background:var(--paper);border:0;border-radius:0}
+.monitor.expanded{position:fixed;inset:0;z-index:10}
+.monitor.expanded .screen,.monitor:fullscreen .screen{flex:1;aspect-ratio:auto}
+.monitor.expanded video,.monitor:fullscreen video{object-fit:contain}
